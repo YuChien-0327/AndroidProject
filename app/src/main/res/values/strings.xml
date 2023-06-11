@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+
+    <string name="title">排球比賽計分APP</string>
+    <string name="start">開始比賽</string>
+    <string name="seeRecord">紀錄查看</string>
+    <string name="stop">暫停</string>
+    <string name="back">返回</string>
+    <string name="backToHome">回到首頁</string>
+    <string name="fighter">個人戰績</string>
+    <string name="save">保存</string>
+
+    <string name="inputMyTeam">輸入自己隊伍名稱：</string>
+    <string name="inputOtherTeam">輸入對手隊伍名稱：</string>
+
+    <string name="time">目前時間：</string>
+    <string name="gameNum">目前局數：</string>
+
+    <string name="number">背號：</string>
+
+    <string name="congratulate">恭喜</string>
+    <string name="winner">獲得勝利!!!</string>
+
+    <string name="win01">攻擊得分</string>
+    <string name="win02">發球得分</string>
+    <string name="win03">攔網得分</string>
+    <string name="win04">對方失誤</string>
+
+    <string name="loss01">攻擊失分</string>
+    <string name="loss02">發球失分</string>
+    <string name="loss03">攔網失分</string>
+    <string name="loss04">舉球失誤</string>
+    <string name="loss05">防守失分</string>
+    <string name="loss06">接發失分</string>
+    <string name="loss07">觸網越界</string>
+</resources>
