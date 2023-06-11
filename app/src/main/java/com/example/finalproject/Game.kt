@@ -1,17 +1,20 @@
 package com.example.finalproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 
 
-class Game : AppCompatActivity() {
+class Game : AppCompatActivity(), Timer.TimerCallback {
     private var gameNum: Int = 1
     private var myScore: Int = 0
     private var otherScore: Int = 0
     val gameRecord = intArrayOf(0, 0, 0)
+
+    private var isPlaying: Int = 1
+    private lateinit var timer: Timer
 
     lateinit var tvTime: TextView
     lateinit var tvGameNum: TextView
@@ -79,6 +82,8 @@ class Game : AppCompatActivity() {
         rbLoss6 = findViewById(R.id.rb_loss6)
         rbLoss7 = findViewById(R.id.rb_loss7)
 
+        timer = Timer()
+        timer.startTimer(this)
 
         tvGameNum.text = "目前局數： " + gameNum
         tvMyTeamScore.text = myScore.toString()
@@ -95,6 +100,19 @@ class Game : AppCompatActivity() {
         btnOtherTeamGetNumber.setOnClickListener { otherTeamGetPoint() }
         btnOtherTeamLossNumber.setOnClickListener { otherTeamLossPoint() }
 
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        timer.stopTimer()
+    }
+    override fun onTimerTick(elapsedTime: Long) {
+        // 在這裡更新 UI，顯示計時器的時間
+        val seconds = elapsedTime / 1000
+        var hour = seconds / 3600
+        var min = (seconds%3600) / 60
+        var sec = (seconds % 3600) % 60
+
+        tvTime.text = "目前時間： " + hour.toString() + ":" + min.toString() + ":" + sec.toString()
     }
     private fun newGame(){
         myScore = 0
@@ -234,6 +252,14 @@ class Game : AppCompatActivity() {
             .show()
     }
     private fun stop(){
-
+        if(isPlaying == 1){
+            isPlaying = 0
+            btnStop.text = "開始"
+            timer.stopTimer()
+        }else{
+            isPlaying = 1
+            btnStop.text = "暫停"
+            timer.startTimer(this)
+        }
     }
 }
