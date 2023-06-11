@@ -9,8 +9,9 @@ import androidx.appcompat.app.AlertDialog
 
 class Game : AppCompatActivity() {
     private var gameNum: Int = 1
-    private var myScore: Int = 0
-    private var otherScore: Int = 0
+    private var myScore: Int = 24
+    private var otherScore: Int = 15
+    val gameRecord = intArrayOf(0, 0, 0)
 
     lateinit var tvTime: TextView
     lateinit var tvGameNum: TextView
@@ -41,6 +42,10 @@ class Game : AppCompatActivity() {
     lateinit var rbLoss5: RadioButton
     lateinit var rbLoss6: RadioButton
     lateinit var rbLoss7: RadioButton
+
+    companion object {
+        val Winner: String = "WinnerName"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +96,57 @@ class Game : AppCompatActivity() {
         btnOtherTeamLossNumber.setOnClickListener { otherTeamLossPoint() }
 
     }
+    private fun newGame(){
+        myScore = 0
+        otherScore = 0
+        gameNum += 1
+        tvGameNum.text = "目前局數： " + gameNum
+        tvMyTeamScore.text = myScore.toString()
+        tvOtherTeamScore.text = otherScore.toString()
+    }
+    private fun finish(winner: String){
+        val intent = Intent()
+        intent.setClass(this@Game, MainActivity::class.java)
+        intent.putExtra(Game.Winner, winner)
+        startActivity(intent)
+    }
+    private fun numOfWin(who: Int): Int{
+        var time: Int = 0
+        for(i in 0..2){
+            if(gameRecord[i] == who){
+                time += 1
+            }
+        }
+        return time
+    }
     private fun isWin(){
+        if(gameNum == 3){ //第三局
+            if(myScore == 15){
+                gameRecord[gameNum - 1] = 1
+                finish(tvMyTeamName.text.toString())
+            }else if(otherScore == 15){
+                gameRecord[gameNum - 1] = 2
+                finish(tvOtherTeamName.text.toString())
+            }
+        }else{ //1、2局
+            if(myScore == 25){
+                gameRecord[gameNum - 1] = 1
+                if(numOfWin(1) == 2){
+                    finish(tvMyTeamName.text.toString())
+                }else{
+                    newGame()
+                }
+            }else if(otherScore == 25){
+                gameRecord[gameNum - 1] = 2
+                if(numOfWin(2) == 2){
+                    finish(tvOtherTeamName.text.toString())
+                }else{
+                    newGame()
+                }
+            }else{
+                return
+            }
+        }
 
     }
     private fun init(){
