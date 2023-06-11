@@ -80,35 +80,40 @@
 
             </LinearLayout>
 
-            
+
             <ScrollView
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:background="@color/scoreScrollBlue">
 
                 <RadioGroup
+                    android:id="@+id/rg_win"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <RadioButton
+                        android:id="@+id/rb_win1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/win01"
                         android:textColor="@color/winItemsColor"
                         android:textSize="15dp" />
                     <RadioButton
+                        android:id="@+id/rb_win2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/winItemsColor"
                         android:text="@string/win02"/>
                     <RadioButton
+                        android:id="@+id/rb_win3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/winItemsColor"
                         android:text="@string/win03"/>
                     <RadioButton
+                        android:id="@+id/rb_win4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
@@ -136,6 +141,7 @@
                     android:orientation="vertical">
 
                     <Button
+                        android:id="@+id/btn_myTeamGetPoint"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:textSize="18dp"
@@ -145,6 +151,7 @@
 
 
                     <Button
+                        android:id="@+id/btn_myTeamLossPoint"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:textSize="18dp"
@@ -160,6 +167,7 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tv_myTeamScore"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:text="25"
@@ -195,6 +203,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/tv_otherTeamScore"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:text="0"
@@ -221,6 +230,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/btn_otherTeamGetPoint"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:textSize="18dp"
@@ -230,6 +240,7 @@
 
 
                 <Button
+                    android:id="@+id/btn_otherTeamLossPoint"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:textSize="18dp"
@@ -270,45 +281,53 @@
                 android:background="@color/scoreScrollOrange">
 
                 <RadioGroup
+                    android:id="@+id/rg_loss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <RadioButton
+                        android:id="@+id/rb_loss1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/lossItemsColor"
                         android:text="@string/loss01"/>
                     <RadioButton
+                        android:id="@+id/rb_loss2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/lossItemsColor"
                         android:text="@string/loss02"/>
                     <RadioButton
+                        android:id="@+id/rb_loss3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/lossItemsColor"
                         android:text="@string/loss03"/>
                     <RadioButton
+                        android:id="@+id/rb_loss4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/lossItemsColor"
                         android:text="@string/loss04"/>
                     <RadioButton
+                        android:id="@+id/rb_loss5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/lossItemsColor"
                         android:text="@string/loss05"/>
                     <RadioButton
+                        android:id="@+id/rb_loss6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
                         android:textColor="@color/lossItemsColor"
                         android:text="@string/loss06"/>
                     <RadioButton
+                        android:id="@+id/rb_loss7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
@@ -361,6 +380,4 @@
 
         </Button>
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
