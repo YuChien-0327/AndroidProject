@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="yellow_1">#FFE699</color>
+    <color name="yellow_2">#843C0C</color>
+    <color name="yellow_3">#FFC000</color>
     <!--project colors-->
     <color name="bgColor">#FDF4D7</color>
     <color name="btnColor">#FFE699</color>
