@@ -9,8 +9,8 @@ import androidx.appcompat.app.AlertDialog
 
 class Game : AppCompatActivity() {
     private var gameNum: Int = 1
-    private var myScore: Int = 24
-    private var otherScore: Int = 15
+    private var myScore: Int = 0
+    private var otherScore: Int = 0
     val gameRecord = intArrayOf(0, 0, 0)
 
     lateinit var tvTime: TextView
@@ -106,7 +106,7 @@ class Game : AppCompatActivity() {
     }
     private fun finish(winner: String){
         val intent = Intent()
-        intent.setClass(this@Game, MainActivity::class.java)
+        intent.setClass(this@Game, Final::class.java)
         intent.putExtra(Game.Winner, winner)
         startActivity(intent)
     }

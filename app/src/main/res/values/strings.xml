@@ -33,4 +33,8 @@
     <string name="loss05">防守失分</string>
     <string name="loss06">接發失分</string>
     <string name="loss07">觸網越界</string>
+
+    <string name="first">第一局</string>
+    <string name="second">第二局</string>
+    <string name="third">第三局</string>
 </resources>
