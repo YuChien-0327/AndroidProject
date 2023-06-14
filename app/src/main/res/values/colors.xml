@@ -25,4 +25,7 @@
     <color name="scoreOrangeUpDown">#FBE5D6</color>
     <color name="winItemsColor">#2F5597</color>
     <color name="lossItemsColor">#C55A11</color>
+    <color name="popBgColor">#E2F0D9</color>
+    <color name="spinnerColor">#548235</color>
+    <color name="fightColor">#C5E0B4</color>
 </resources>

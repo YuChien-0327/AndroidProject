@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center">
+
+    <View
+        android:id="@+id/squareView"
+        android:layout_width="600dp"
+        android:layout_height="350dp"
+        android:background = "@color/popBgColor"
+        android:layout_gravity="center" >
+    </View>
+    <LinearLayout
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseNum"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/sp_chooseNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@null"
+            android:spinnerMode="dropdown"
+            android:popupBackground="@drawable/spinner_style"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="550dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
+
+
+        <ScrollView
+            android:layout_width="275dp"
+            android:layout_height="250dp"
+            android:background="@color/scoreBlue">
+            <TextView
+                android:id="@+id/tv_winScore"
+                android:layout_width="275dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="\n得分"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="275dp"
+            android:layout_height="250dp"
+            android:background="@color/scoreOrange">
+
+            <TextView
+                android:id="@+id/tv_lossScore"
+                android:layout_width="275dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="\n失分"
+                android:gravity="center_horizontal"/>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

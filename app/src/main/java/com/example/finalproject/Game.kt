@@ -11,10 +11,12 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
     private var gameNum: Int = 1
     private var myScore: Int = 0
     private var otherScore: Int = 0
-    val gameRecord = intArrayOf(0, 0, 0)
+    var gameRecord = intArrayOf(0, 0, 0)
 
     private var isPlaying: Int = 1
     private lateinit var timer: Timer
+
+    private var players = ArrayList<Player>()
 
     lateinit var tvTime: TextView
     lateinit var tvGameNum: TextView
@@ -45,10 +47,6 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
     lateinit var rbLoss5: RadioButton
     lateinit var rbLoss6: RadioButton
     lateinit var rbLoss7: RadioButton
-
-    companion object {
-        val Winner: String = "WinnerName"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +112,29 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
 
         tvTime.text = "目前時間： " + hour.toString() + ":" + min.toString() + ":" + sec.toString()
     }
+    private fun checkIsHave(number: Int) {
+        for (player in players) {
+            if(number == player.number){
+                return
+            }
+        }
+        players.add(Player(number))
+    }
+    private fun addPlayerScore(number: String, winLoss: Int, style: Int) { //1Win
+        checkIsHave(number.toInt())
+        for (player in players) {
+            if(number.toInt() == player.number){
+                if(winLoss == 1){
+                    player.win_score += 1
+                    player.winTypesArr[style-1] += 1
+                }else if(winLoss == 2){
+                    player.loss_score += 1
+                    player.lossTypesArr[style-1] += 1
+                }
+
+            }
+        }
+    }
     private fun newGame(){
         myScore = 0
         otherScore = 0
@@ -123,9 +144,10 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
         tvOtherTeamScore.text = otherScore.toString()
     }
     private fun finish(winner: String){
-        val intent = Intent()
-        intent.setClass(this@Game, Final::class.java)
-        intent.putExtra(Game.Winner, winner)
+        val playersArray = players.toTypedArray()
+        val intent = Intent(this, Final::class.java)
+        intent.putExtra("winner", winner)
+        intent.putExtra("players", playersArray)
         startActivity(intent)
     }
     private fun numOfWin(who: Int): Int{
@@ -204,6 +226,7 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
         }else{
             myScore += 1
             tvMyTeamScore.text = myScore.toString()
+            addPlayerScore(etWinNumber.text.toString(), 1, getWinReason())
             init()
             isWin()
         }
@@ -225,6 +248,7 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
         }else{
             otherScore += 1
             tvOtherTeamScore.text = otherScore.toString()
+            addPlayerScore(etLossNumber.text.toString(), 2, getLossReason())
             init()
             isWin()
         }

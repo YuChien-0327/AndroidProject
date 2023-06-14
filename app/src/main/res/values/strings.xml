@@ -37,4 +37,6 @@
     <string name="first">第一局</string>
     <string name="second">第二局</string>
     <string name="third">第三局</string>
+
+    <string name="chooseNum">選擇查詢球員背號：</string>
 </resources>
