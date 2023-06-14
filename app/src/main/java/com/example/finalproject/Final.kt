@@ -49,6 +49,11 @@ class Final : AppCompatActivity() {
 
         tvWin.text = "恭喜" + intent.getStringExtra("winner") + "獲得勝利!!!"
 
+        var scores = intent.getSerializableExtra("scores") as Array<String>
+        tvFirst.text = scores[0]
+        tvSecond.text = scores[1]
+        tvThird.text = scores[2]
+
         btnReturn.setOnClickListener { backToHome() }
         btnFighter.setOnClickListener { showAlertDialog()  }
         btnSave.setOnClickListener { save() }

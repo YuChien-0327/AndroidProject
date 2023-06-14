@@ -16,6 +16,7 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
     private var isPlaying: Int = 1
     private lateinit var timer: Timer
 
+    private var scores = arrayOf("", "", "提早結束比賽!!")
     private var players = ArrayList<Player>()
 
     lateinit var tvTime: TextView
@@ -148,6 +149,7 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
         val intent = Intent(this, Final::class.java)
         intent.putExtra("winner", winner)
         intent.putExtra("players", playersArray)
+        intent.putExtra("scores", scores)
         startActivity(intent)
     }
     private fun numOfWin(who: Int): Int{
@@ -162,14 +164,17 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
     private fun isWin(){
         if(gameNum == 3){ //第三局
             if(myScore == 15){
+                scores[gameNum - 1] = "15:$otherScore"
                 gameRecord[gameNum - 1] = 1
                 finish(tvMyTeamName.text.toString())
             }else if(otherScore == 15){
+                scores[gameNum - 1] = "$myScore:15"
                 gameRecord[gameNum - 1] = 2
                 finish(tvOtherTeamName.text.toString())
             }
         }else{ //1、2局
             if(myScore == 25){
+                scores[gameNum - 1] = "25:$otherScore"
                 gameRecord[gameNum - 1] = 1
                 if(numOfWin(1) == 2){
                     finish(tvMyTeamName.text.toString())
@@ -177,6 +182,7 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
                     newGame()
                 }
             }else if(otherScore == 25){
+                scores[gameNum - 1] = "$myScore:25"
                 gameRecord[gameNum - 1] = 2
                 if(numOfWin(2) == 2){
                     finish(tvOtherTeamName.text.toString())

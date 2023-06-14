@@ -47,5 +47,4 @@ class Timer {
             isPaused = true
         }
     }
-
 }
