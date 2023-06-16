@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class Game : AppCompatActivity(), Timer.TimerCallback {
-    private var gameNum: Int = 2
-    private var myScore: Int = 24
+    private var gameNum: Int = 1 
+    private var myScore: Int = 0
     private var otherScore: Int = 0
-    var gameRecord = intArrayOf(1, 0, 0)
+    var gameRecord = intArrayOf(0, 0, 0)
 
     private var isPlaying: Int = 1
     private lateinit var timer: Timer
