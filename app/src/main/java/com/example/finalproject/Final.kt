@@ -1,7 +1,10 @@
 package com.example.finalproject
 
+import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +30,14 @@ class Final : AppCompatActivity() {
     private var players = ArrayList<Player>()
     private val winTypeArr = arrayOf("攻擊得分", "發球得分", "攔網得分", "對方失誤")
     private val lossTypeArr = arrayOf("攻擊失分", "發球失分", "攔網失分", "舉球失誤",  "防守失分", "接發失分", "觸網越界")
+
+    private lateinit var databaseHelper: SqlDataBaseHelper
+    private lateinit var database: SQLiteDatabase
+
+    private lateinit var winner: String
+    private lateinit var title: String
+
+    private var save = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_final)
@@ -47,7 +58,10 @@ class Final : AppCompatActivity() {
         btnFighter = findViewById(R.id.btn_fighter)
         btnSave = findViewById(R.id.btn_save)
 
-        tvWin.text = "恭喜" + intent.getStringExtra("winner") + "獲得勝利!!!"
+        title = intent.getStringExtra("title").toString()
+
+        winner = intent.getStringExtra("winner").toString()
+        tvWin.text = "恭喜" + winner + "獲得勝利!!!"
 
         var scores = intent.getSerializableExtra("scores") as Array<String>
         tvFirst.text = scores[0]
@@ -125,19 +139,46 @@ class Final : AppCompatActivity() {
     }
 
     private fun backToHome(){
-        AlertDialog.Builder(this)
-            .setMessage("保存了嗎?記得保存在離開歐!!!")
-            .setPositiveButton("裡開") { _, _ ->
-                val intent = Intent()
-                intent.setClass(this@Final, MainActivity::class.java)
-                startActivity(intent)
-            }
-            .setNegativeButton("取消") { _, _ ->
-                Toast.makeText(applicationContext, "Noo", Toast.LENGTH_SHORT).show()
-            }
-            .show()
+        if(!save){
+            AlertDialog.Builder(this)
+                .setMessage("保存了嗎?記得保存在離開歐!!!")
+                .setPositiveButton("裡開") { _, _ ->
+                    val intent = Intent()
+                    intent.setClass(this@Final, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                .setNegativeButton("取消") { _, _ ->
+                    Toast.makeText(applicationContext, "Noo", Toast.LENGTH_SHORT).show()
+                }
+                .show()
+        }else{
+            val intent = Intent()
+            intent.setClass(this@Final, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+    fun insert() {
+        databaseHelper = SqlDataBaseHelper(this)
+        database = databaseHelper.writableDatabase
+
+        // 创建包含要插入的数据的ContentValues对象
+        val values = ContentValues().apply {
+            put("title", title) // 插入的name值
+            put("winner", winner)
+        }
+        database.insert("mytable", null, values)
+
+        database.close()
     }
     private fun save(){
+        if(!save){
+            insert()
+            save = true
+            Toast.makeText(this, "以儲存紀錄!!!", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, "已經儲存過囉!!!", Toast.LENGTH_LONG).show()
+        }
 
     }
 }

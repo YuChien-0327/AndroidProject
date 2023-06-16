@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class Game : AppCompatActivity(), Timer.TimerCallback {
-    private var gameNum: Int = 1
-    private var myScore: Int = 0
+    private var gameNum: Int = 2
+    private var myScore: Int = 24
     private var otherScore: Int = 0
-    var gameRecord = intArrayOf(0, 0, 0)
+    var gameRecord = intArrayOf(1, 0, 0)
 
     private var isPlaying: Int = 1
     private lateinit var timer: Timer
@@ -145,11 +145,13 @@ class Game : AppCompatActivity(), Timer.TimerCallback {
         tvOtherTeamScore.text = otherScore.toString()
     }
     private fun finish(winner: String){
+        val title = tvMyTeamName.text.toString() + " vs " + tvOtherTeamName.text.toString()
         val playersArray = players.toTypedArray()
         val intent = Intent(this, Final::class.java)
         intent.putExtra("winner", winner)
         intent.putExtra("players", playersArray)
         intent.putExtra("scores", scores)
+        intent.putExtra("title", title)
         startActivity(intent)
     }
     private fun numOfWin(who: Int): Int{

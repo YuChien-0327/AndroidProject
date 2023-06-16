@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun seeRecord(){
-
+        val intent = Intent()
+        intent.setClass(this@MainActivity, Recoder::class.java)
+        startActivity(intent)
     }
 }
