@@ -1,4 +1,4 @@
-# AndroidProject - 排球計分APP'
+# AndroidProject - 排球計分APP
 
 組員：00957204 葉宥君、00857135 張馨予、00957035 邱語芊
 
